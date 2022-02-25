@@ -18,7 +18,14 @@ public class List<T> implements IList<T>{
 	 */
 	@Override
 	public Node<T> addAfter(Node<T> elem, T item) {
-		//COMPLETE CODE HERE
+		if(elem == null) {
+			return null;
+		}
+		Node<T> newItem = new Node<T>(elem.next, item); 
+
+		elem.next = newItem;
+		size++;
+		return newItem;
 	}
 
 	/**
@@ -49,7 +56,41 @@ public class List<T> implements IList<T>{
 	 */
 	@Override
 	public T remove(Node<T> elem) {
-		//COMPLETE CODE HERE
+		Node<T> elemTobeRemoved = search(elem.getElement());
+		Node<T> tempNode = head;
+		Node<T> prevNode = null;
+		
+		if((tempNode.element == elemTobeRemoved && tempNode != null)) {
+			head = tempNode.next;
+			return null;
+		}		
+
+        while (tempNode != null && tempNode.element != elemTobeRemoved) {
+			prevNode = tempNode;
+            tempNode = tempNode.next;
+			System.out.println("Checking "+tempNode+ " against "+elemTobeRemoved);
+			if(tempNode == elemTobeRemoved) {
+				System.out.println("Removing element: "+elemTobeRemoved);
+				prevNode.next = tempNode.next;
+				size--;
+				return elem.getElement();
+			}
+        }
+		
+		return null;
+		
+	}
+
+	public int getElementIndex(T elem) {
+		int index = 0;
+		Node<T> currentNode = head.getNext();
+		while (currentNode != null) {
+			index++;
+			if (currentNode.getElement().equals(elem)) {
+				break;
+			}
+		}
+		return index;
 	}
 
 	/**
@@ -90,7 +131,7 @@ public class List<T> implements IList<T>{
 	public Integer size() {
 		return size;
 	}
-	
+
 	@Override
 	public String toString() {
 		String result = head.toString() + " <-> ";
