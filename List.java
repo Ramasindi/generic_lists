@@ -81,16 +81,28 @@ public class List<T> implements IList<T>{
 		
 	}
 
-	public int getElementIndex(T elem) {
-		int index = 0;
-		Node<T> currentNode = head.getNext();
-		while (currentNode != null) {
-			index++;
-			if (currentNode.getElement().equals(elem)) {
-				break;
-			}
+	@Override
+	public T removeLast() {
+		if(head == null || head.next == null) return null;
+
+		Node<T> tempNode = head;
+		while(tempNode.next.next != null) {
+			tempNode = tempNode.next;
 		}
-		return index;
+
+		tempNode.next = null;
+		size--;
+		return head.element;
+	}
+	@Override
+	public T removeFirst() {
+		if(head == null) return null;
+
+		Node<T> tempNode = head;
+		head = head.next;
+		size--;
+		System.out.println(head.element);
+		return head.element;
 	}
 
 	/**

@@ -4,6 +4,8 @@ public interface IList<T> {
 	public Node<T> addFirst(T item);
 	public Node<T> addLast(T item);
 	public T remove(Node<T> elem);
+	public T removeLast();
+	public T removeFirst();
 	public Node<T> search(T elem);
 	public Node<T> first();
 	

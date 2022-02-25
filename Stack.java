@@ -14,7 +14,7 @@ public class Stack<T> {
 	 * ********** 2 marks ****************************
 	 */
 	public void push(T item) {
-		//COMPLETE CODE HERE
+		stack.addFirst(item);
 	}
 	
 	/*
@@ -22,7 +22,7 @@ public class Stack<T> {
 	 * ********** 3 marks ****************************
 	 */
 	public T pop() {
-		//COMPLETE CODE HERE
+		return stack.removeFirst();		
 	}
 	
 	/*
